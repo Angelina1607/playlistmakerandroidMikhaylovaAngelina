@@ -1,4 +1,4 @@
-package com.example.playlist_maker_android_mikhaylovaangelina
+package com.example.playlist_maker_android_mikhaylovaangelina.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -32,6 +32,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.compose.rememberNavController
+import com.example.playlist_maker_android_mikhaylovaangelina.PlaylistHost
+import com.example.playlist_maker_android_mikhaylovaangelina.R
 import com.example.playlist_maker_android_mikhaylovaangelina.ui.theme.PlaylistmakerandroidMikhaylovaAngelinaTheme
 
 class MainActivity : ComponentActivity() {

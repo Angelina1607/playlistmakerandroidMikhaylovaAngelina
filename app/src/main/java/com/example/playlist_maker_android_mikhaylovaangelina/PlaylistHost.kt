@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.example.playlist_maker_android_mikhaylovaangelina.ui.MainScreen
 
 // 1. Enum-класс с перечислением имеющихся экранов
 enum class PlaylistScreen {
