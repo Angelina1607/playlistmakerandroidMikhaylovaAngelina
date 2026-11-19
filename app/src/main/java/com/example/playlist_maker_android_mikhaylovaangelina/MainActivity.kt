@@ -1,10 +1,10 @@
 package com.example.playlist_maker_android_mikhaylovaangelina
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.annotation.DrawableRes
-import androidx.compose.ui.res.painterResource
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,13 +25,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
 import com.example.playlist_maker_android_mikhaylovaangelina.ui.theme.PlaylistmakerandroidMikhaylovaAngelinaTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,17 +40,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PlaylistmakerandroidMikhaylovaAngelinaTheme {
-                MainScreen()
+                val navController = rememberNavController()
+                PlaylistHost(navController = navController)
             }
         }
     }
 }
 
 @Composable
-fun MainScreen() {
-    val context = LocalContext.current
-
-    Column(modifier = Modifier.fillMaxSize().background(Color(55, 114, 231))) {
+fun MainScreen(
+    onSearchClick: () -> Unit = {},
+    onSettingsClick: () -> Unit = {}
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(55, 114, 231))
+    ) {
         // Шапка
         Box(
             modifier = Modifier
@@ -85,7 +89,7 @@ fun MainScreen() {
             MenuItem(
                 icon = R.drawable.search,
                 title = "Поиск",
-                onClick = { context.startActivity(Intent(context, SearchActivity::class.java)) }
+                onClick = onSearchClick
             )
             MenuItem(
                 icon = R.drawable.library,
@@ -98,9 +102,9 @@ fun MainScreen() {
                 onClick = { /* экран пока не нужен */ }
             )
             MenuItem(
-                icon = R.drawable.favorite_border,
+                icon = R.drawable.settings,
                 title = "Настройки",
-                onClick = { context.startActivity(Intent(context, SettingsActivity::class.java)) }
+                onClick = onSettingsClick
             )
         }
     }
